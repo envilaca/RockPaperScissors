@@ -4,9 +4,8 @@ import rockpaperscissors.operations.*;
 
 import java.util.*;
 
-public class App {
-    public static void main(String[] args) {
-        // Making some lists to facilitate some future user input checks
+public class App implements Runnable{
+    public void run() {
         Map<String, Operation> interfaceOp = new HashMap<>() {{
             put("play", new Play());
             put("view score", new ViewScore());
@@ -36,11 +35,15 @@ public class App {
             // Not today, though
             // Yesterday, however
             System.out.print("\nYou can ");
-            for (String op : interfaceOp.keySet()) {
-                System.out.printf("'%s', ", op);
-            }
+            for (String op : interfaceOp.keySet()) System.out.printf("'%s', ", op);
             System.out.println("or 'exit'.");
         }
         scanner.close();
     }
+
+    public App(String[] args) {
+        this.args = args;
+    }
+
+    String[] args;
 }
